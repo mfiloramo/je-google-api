@@ -7,6 +7,10 @@ require('dotenv').config();
 const app = express();
 const port = process.env.PORT || 3000;
 
+app.get('/', (req, res) => {
+  res.send('This is working and deployed!');
+})
+
 // CALL GOOGLE API
 app.get('/googleapi', async (req, res) => {
   try {

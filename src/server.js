@@ -1,18 +1,17 @@
+// MODULE INPORTS
 const express = require('express');
 const axios = require('axios');
 require('dotenv').config();
 
+// SET UP SERVER
 const app = express();
 const port = process.env.PORT || 3000;
 
-app.get('/', (req, res) => {
-  res.send('Hellooooo!');
-})
-
+// CALL GOOGLE API
 app.get('/googleapi', async (req, res) => {
   try {
     const apiKey = process.env.GOOGLE_API_KEY;
-    const query = req.query.q || 'example'; // Example query parameter
+    const query = req.query.q || 'example';
 
     const response = await axios.get(`https://www.googleapis.com/customsearch/v1`, {
       params: {
@@ -29,6 +28,7 @@ app.get('/googleapi', async (req, res) => {
   }
 });
 
+// RUN SERVER
 app.listen(port, () => {
   console.log(`Server is running on port ${ port }`);
 });
